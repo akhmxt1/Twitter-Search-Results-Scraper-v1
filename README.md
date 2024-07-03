@@ -1,4 +1,4 @@
-# Twitter Scraper using Selenium
+# Twitter Search Results Scraper using Selenium
 
 With recent changes in Twitter's data access policies, collecting Twitter data has become increasingly difficult and nearly impossible if you are not willing to spend thousands of dollars. This project provides an automated solution to log into Twitter, search for specific topics, and collect tweets using Selenium WebDriver. The collected data is then saved into an Excel file for easy access and analysis.
 
