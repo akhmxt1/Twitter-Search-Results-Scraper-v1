@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 import pandas as pd
+import random
 
 # Set up Chrome options
 chrome_options = Options()
@@ -26,7 +27,7 @@ driver.get("https://x.com/login")
 subject = """ "Presidential debate" OR "Joe Biden" OR "Trump" since:1719450000 until:1719673200 """
 
 # Set up login
-sleep(8.5)  # Wait for the login page to load
+sleep(random.uniform(7, 10))  # Wait for the login page to load
 
 username = driver.find_element(By.XPATH, "//input[@name='text']")
 username.send_keys("your_username")  # Add your username
@@ -35,26 +36,26 @@ next_button = driver.find_element(By.XPATH, "//span[contains(text(),'Next')]")
 next_button.click()
 
 # Wait for the password input to be present
-sleep(3)
+sleep(random.uniform(2.5, 4.5))
 password = driver.find_element(By.XPATH, "//input[@name='password']")
 password.send_keys("your_password")  # Add your password
 log_in = driver.find_element(By.XPATH, "//span[contains(text(), 'Log in')]")
 log_in.click()
 
 # Wait for the main page to load and search box to be present
-sleep(10)
+sleep(random.uniform(8, 12))
 search_box = driver.find_element(By.XPATH, "//input[@data-testid='SearchBox_Search_Input']")
 search_box.send_keys(subject)
 search_box.send_keys(Keys.ENTER)
 
-# Delete the comments and enable this only if you wish it to go by the "Latest tab"
+# Delete the comments and enable this only if you wish it to go by the "Latest" tab
 # Click on the Latest tab
 # sleep(5)
 # latest_tab = driver.find_element(By.XPATH, "//span[contains(text(), 'Latest')]")
 # latest_tab.click()
 
 # Wait for search results to load
-sleep(8)
+sleep(random.uniform(7, 10))
 
 Usernames = []
 TimeStamps = []
@@ -66,6 +67,14 @@ Links = []
 
 # Limit of tweets to collect
 tweet_limit = 5000
+
+def human_like_scroll(driver, scroll_limit):
+    current_scrolls = 0
+    while current_scrolls < scroll_limit:
+        scroll_height = random.uniform(300, 600)
+        driver.execute_script(f"window.scrollBy(0, {scroll_height});")
+        sleep(random.uniform(1, 3))
+        current_scrolls += 1
 
 try:
     # Collect tweets
@@ -95,8 +104,7 @@ try:
                 continue
         
         if len(Tweets) < tweet_limit:
-            driver.execute_script('window.scrollTo(0,document.body.scrollHeight);')
-            sleep(3)
+            human_like_scroll(driver, scroll_limit=random.randint(1, 3))
         else:
             break
 except Exception as e:
