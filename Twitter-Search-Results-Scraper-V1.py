@@ -114,7 +114,7 @@ finally:
     print(len(Usernames), len(TimeStamps), len(Tweets), len(Replys), len(Retweets), len(Likes), len(Links))
 
     # Create DataFrame and save to Excel
-    df = pd.DataFrame(zip(Usernames, TimeStamps, Tweets, Replys, Retweets, Likes, Links), columns=['Usernames', 'TimeStamps', 'Tweets', 'Replys', 'Retweets', 'Likes', 'Links'])
+    df = pd.DataFrame(zip(Usernames, TimeStamps, Tweets, Replys, Retweets, Likes, Links), columns=['Usernames', 'TimeStamps', 'Tweets', 'Replies', 'Retweets', 'Likes', 'Links'])
 
     # Save the DataFrame to an Excel file on the desktop
     output_path = "/Users/XYZ/Desktop/testing-selenium/live_tweets.xlsx"
